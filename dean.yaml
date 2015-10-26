@@ -1,0 +1,124 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Dean system
+  description: |
+    **This example has a working backend hosted in localhost**
+
+host: petstore-api.herokuapp.com
+
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+paths:
+  /student:
+    post:
+      parameters:
+        - name: method
+          in: body
+          description: define action type 
+          required: true
+          type: string
+        - name: uni
+          in: body
+          description:  student's uni 
+          required: true
+          type: string
+        - name: name
+          in: body
+          description:  student name 
+          type: string
+        - name: courseAction
+          in: body
+          description: add or delete a course
+          type: string
+        - name: course
+          in: body
+          description: course ID
+          type: string
+
+ 
+      responses:
+        '200':
+          description: List the information of a student
+          schema:
+            title: Student's courses
+            type: array
+            items:
+              $ref: '#/definitions/student'
+              
+
+
+  /course:
+    post:
+      parameters:
+        - name: method
+          in: body
+          description: define action type 
+          required: true
+          type: string
+        - name: cid
+          in: body
+          description:  course's id
+          required: true
+          type: string
+        - name: name
+          in: body
+          description:  course name 
+          type: string
+        - name: instructor
+          in: body
+          description: Instructor's name
+          type: string
+        - name: studentAction
+          in: body
+          description: add or delete a student
+          type: string
+        - name: student
+          in: body
+          description: student ID
+          type: string
+
+ 
+      responses:
+        '200':
+          description: List all information of a course
+          schema:
+            title: course
+            type: array
+            items:
+              $ref: '#/definitions/course'
+              
+
+
+
+
+
+definitions:
+  student:
+    type: object
+    properties:
+      name:
+        type: string
+      uni:
+        type: string
+      course_enrollded:
+        type: array
+  course:
+    type: object
+    properties:
+      name:
+        type: string
+      cid:
+        type: string
+      instructor:
+        type: string
+      student_enrolled:
+        type: array
+      
